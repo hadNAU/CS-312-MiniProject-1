@@ -26,7 +26,7 @@ app.post("/posts", (req, res) => {
         createdAt: new Date().toLocaleString()
     };
 
-    posts.push(newPost);
+    posts.unshift(newPost);
 
     console.log(posts);
 
