@@ -33,6 +33,28 @@ app.post("/posts", (req, res) => {
     res.redirect("/");
 });
 
+// Route for the edit page
+app.get("/edit/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    const post = posts.find(post => post.id === id);
+
+    res.render("edit", { post });
+});
+
+//save the edited post
+app.post("/edit/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    const post = posts.find(post => post.id === id);
+
+    post.author = req.body.author;
+    post.title = req.body.title;
+    post.content = req.body.content;
+
+    res.redirect("/");
+});
+
 app.listen(PORT, () => {
     console.log(`server on at http://localhost:${PORT}`);
 });
