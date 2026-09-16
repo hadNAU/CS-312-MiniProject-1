@@ -25,5 +25,37 @@
 
         <button type="submit">Create Post</button>
     </form>
+
+    <h2>Posts</h2>
+    
+    <!-- handle empty posts -->
+
+    <% if (posts.length === 0) { %>
+
+        <p>No posts yet.</p>
+
+    <% } %>
+
+    <!-- Display the posts -->
+    <% posts.forEach(post => { %>
+        
+        <div class="post">
+            <h3><%= post.title %></h3>
+
+            <p>
+                By <%= post.author %>
+                | <%= post.createdAt %>
+            </p>
+
+            <p><%= post.content %></p>
+
+            <a href="/edit/<%= post.id %>">Edit</a>
+
+            <form action="/delete/<%= post.id %>" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    <% }) %>
+
 </body>
 </html>

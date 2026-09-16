@@ -2,6 +2,7 @@ import express from "express";
 
 const app = express();
 const PORT = 3000;
+
 let posts = [];
 
 // Set EJS as the view engine
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.post("/posts", (req, res) => {
     const newPost = {
+        id: Date.now(), //date as id bc mini proj
         author: req.body.author,
         title: req.body.title,
         content: req.body.content,
