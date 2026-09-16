@@ -2,6 +2,7 @@ import express from "express";
 
 const app = express();
 const PORT = 3000;
+let posts = [];
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
@@ -12,7 +13,22 @@ app.use(express.static("public"));
 
 // Route for the home page
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", { posts });
+});
+
+app.post("/posts", (req, res) => {
+    const newPost = {
+        author: req.body.author,
+        title: req.body.title,
+        content: req.body.content,
+        createdAt: new Date().toLocaleString()
+    };
+
+    posts.push(newPost);
+
+    console.log(posts);
+
+    res.redirect("/");
 });
 
 app.listen(PORT, () => {
