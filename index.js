@@ -55,6 +55,17 @@ app.post("/edit/:id", (req, res) => {
     res.redirect("/");
 });
 
+//delete a post
+app.post("/delete/:id", (req, res) => {
+    //get id to delete
+    const id = Number(req.params.id);
+
+    //make new array of posts that excludes the deleted post
+    posts = posts.filter(post => post.id !== id);
+
+    res.redirect("/");
+});
+
 app.listen(PORT, () => {
     console.log(`server on at http://localhost:${PORT}`);
 });
